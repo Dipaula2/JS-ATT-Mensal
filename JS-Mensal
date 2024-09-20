@@ -1,0 +1,34 @@
+<p><script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtém a data atual
+        var now = new Date();
+        
+        // Nomes dos meses em português
+        var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        
+        // Definir 5 dias antes de mudar para o próximo mês
+        var daysBeforeSwitch = 5;
+        var currentMonth = now.getMonth();
+        var currentYear = now.getFullYear();
+        
+        // Verifica se estamos nos últimos 5 dias do mês
+        if (now.getDate() >= (new Date(currentYear, currentMonth + 1, 0).getDate() - daysBeforeSwitch)) {
+            currentMonth += 1; // Muda para o próximo mês
+            if (currentMonth === 12) {
+                currentMonth = 0; // Se for dezembro, volta para janeiro
+                currentYear += 1; // Incrementa o ano
+            }
+        }
+        
+        // Formata o mês e ano atuais
+        var formattedDate = "<strong>" + monthNames[currentMonth] + "</strong>/" + currentYear;
+
+        // Atualiza os elementos com a classe 'update-date'
+        var dateElements = document.querySelectorAll(".update-date");
+        dateElements.forEach(function (element) {
+            element.innerHTML = formattedDate;
+        });
+    });
+</script></p>
+<h3><em> <span style="font-family: arial, helvetica, sans-serif; font-size: 18pt;"> Atualizado em: <span class="update-date" style="font-size: 18pt;"> <!-- O conteúdo será atualizado via JavaScript --> </span> - Ouvidoria </span> </em></h3>
